@@ -31,3 +31,6 @@ jobs:
           else
             git commit -m "fweaking updated docs"
             git push
+          fi
+          
+          
