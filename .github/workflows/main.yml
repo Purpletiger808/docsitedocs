@@ -1,0 +1,34 @@
+name: fweaking-auto-checkout
+on: [push]
+jobs:
+  fweaking-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "fweaking checkout main docsite"
+      - uses: actions/checkout@v5
+        with:
+          repository: purpletiger808/docsite
+          token: ${{  secrets.fweaking_token  }}
+          path: docsite
+          
+      - name: "get the fweaking actual docs"
+      - uses: actions/checkout@v5
+        with:
+          path: main
+
+      - name: "fweaking combines them"
+        run: |
+          cp main/*.md docsite/docs
+          npm run start
+
+      - name: "fweaking push to docsite"
+        run: |
+          cd docsite
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "fweaking updated docs"
+            git push
