@@ -19,7 +19,6 @@ jobs:
       - name: "fweaking combines them"
         run: |
           cp main/*.md docsite/docs
-          npm run start
 
       - name: "fweaking push to docsite"
         run: |
