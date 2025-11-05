@@ -2,7 +2,7 @@ name: fweaking-auto-checkout
 on: [push]
 jobs:
   fweaking-checkout:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #replace later with local runner
     steps:
       - name: "fweaking checkout main docsite"
         uses: actions/checkout@v5
@@ -18,19 +18,21 @@ jobs:
 
       - name: "fweaking combines them"
         run: |
+          mkdir docsite/docs
           cp main/*.md docsite/docs
 
-      - name: "fweaking push to docsite"
+      - name: "fweaking build"
+        run: | 
+          npm run build
+
+      - name: "fweaking precompress"
         run: |
-          cd docsite
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "fweaking updated docs"
-            git push
-          fi
-          
-          
+          tar -zcf .tar.gz docsite/build
+        
+      - name: "fweaking upload artifact"
+        uses: actions/upload-artifact@v5.0.0
+        with:
+          name: "fweaking-build-artifact"
+          path: /docsite/build
+          if-no-files-found: error
+          compression-level: 6
