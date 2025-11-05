@@ -9,7 +9,7 @@ jobs:
         with:
           repository: purpletiger808/docsite
           token: ${{  secrets.FWEAKING_TOKEN  }}
-          path: docsite
+          path: NOTdocsite
           
       - name: "get the fweaking actual docs"
         uses: actions/checkout@v5
@@ -21,7 +21,7 @@ jobs:
           rm -rf docsite/docs
           mkdir docsite/docs
           cp main/*.md docsite/docs
-          cd docsite
+          cd docsite/docsite
 
       - name: "fweaking build"
         run: | 
