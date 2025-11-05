@@ -21,6 +21,7 @@ jobs:
           rm -rf docsite/docs
           mkdir docsite/docs
           cp main/*.md docsite/docs
+          cd docsite
 
       - name: "fweaking build"
         run: | 
