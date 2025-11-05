@@ -18,6 +18,7 @@ jobs:
 
       - name: "fweaking combines them"
         run: |
+          rm -rf docsite/docs
           mkdir docsite/docs
           cp main/*.md docsite/docs
 
