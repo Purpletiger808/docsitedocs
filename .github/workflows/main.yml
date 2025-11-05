@@ -25,6 +25,7 @@ jobs:
 
       - name: "fweaking build"
         run: | 
+          ls -a
           npm run build
 
       - name: "fweaking precompress"
