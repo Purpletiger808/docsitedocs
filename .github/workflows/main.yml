@@ -14,10 +14,13 @@ jobs:
         uses: actions/checkout@v5
         with:
           path: ./docsite/docs
+
+      - name: "get the fweaking packages"
+        run: |
+          npm install
           
       - name: "fweaking build"
         run: | 
-          ls -a
           npm run build
 
       - name: "fweaking precompress"
