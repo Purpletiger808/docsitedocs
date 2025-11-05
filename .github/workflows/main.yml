@@ -36,6 +36,6 @@ jobs:
         uses: actions/upload-artifact@v5.0.0
         with:
           name: "fweaking-build-artifact"
-          path: /docsite/build
+          path: ./build
           if-no-files-found: error
           compression-level: 6
