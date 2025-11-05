@@ -25,7 +25,7 @@ jobs:
 
       - name: "fweaking precompress"
         run: |
-          tar -zcf .tar.gz docsite/build
+          tar -zcf buildfact.tar.gz ./docsite/build
         
       - name: "fweaking upload artifact"
         uses: actions/upload-artifact@v5.0.0
