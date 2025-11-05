@@ -13,7 +13,7 @@ jobs:
       - name: "get the fweaking actual docs"
         uses: actions/checkout@v5
         with:
-          path: ./docsite/docs
+          path: ./docs
           
       - name: "fweaking test checkouts"  
         run: |
