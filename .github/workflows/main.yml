@@ -1,41 +1,41 @@
-name: fweaking-auto-checkout
+name: auto-checkout
 on: [push]
 jobs:
-  fweaking-checkout:
+  checkout:
     runs-on: ubuntu-latest #replace later with local runner
     steps:
-      - name: "fweaking checkout main docsite"
+      - name: "checkout main docsite"
         uses: actions/checkout@v5
         with:
           repository: purpletiger808/docsite
           token: ${{  secrets.FWEAKING_TOKEN  }}
           
-      - name: "get the fweaking actual docs"
+      - name: "get the actual docs"
         uses: actions/checkout@v5
         with:
           path: ./docs
           
-      - name: "fweaking test checkouts"  
+      - name: "test checkouts"  
         run: |
           ls -a
 
-      - name: "get the fweaking packages"
+      - name: "get the packages"
         run: |
           npm install
           
-      - name: "fweaking build"
+      - name: "build"
         run: | 
           npm run build
 
-      - name: "fweaking precompress"
+      - name: "precompress"
         run: |
           ls -a
           tar -zcf buildfact.tar.gz build
         
-      - name: "fweaking upload artifact"
+      - name: "upload artifact"
         uses: actions/upload-artifact@v5.0.0
         with:
-          name: "fweaking-build-artifact"
+          name: "build-artifact"
           path: ./build
           if-no-files-found: error
           compression-level: 6
